@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import TreatmentService from "../../../services/treatmentService";
+import TreatmentService from "@/services/treatmentService";
 
 type FormData = {
   animalId: string;
@@ -32,13 +32,9 @@ const ModifyTreatmentPage = () => {
   const [valueToSubmit, setValueToSubmit] = useState<FormData | null>(null);
 
   useEffect(() => {
-    // Récupère les données de l'espace que vous voulez modifier
-    // Remplacez cela par votre propre logique pour obtenir les données de l'espace
     const fetchTreatment = async () => {
-      if (treatmentId) {
-        const treatmentData = await TreatmentService.getTreatmentById(
-          treatmentId
-        );
+      if (typeof treatmentId === 'string') {
+        const treatmentData = await TreatmentService.getTreatmentById(treatmentId);
         setTreatment(treatmentData);
         setValue("animalId", treatmentData.animalId);
         setValue("veterinarianId", treatmentData.veterinarianId);
@@ -47,11 +43,10 @@ const ModifyTreatmentPage = () => {
       }
     };
 
-    if (treatmentId) {
+    if (typeof treatmentId === 'string') {
       fetchTreatment();
     }
   }, [treatmentId, setValue]);
-console.log("treatment > ", treatment)
 
   const onSubmit = (data: FormData) => {
     const dataToSubmit = {
@@ -59,13 +54,12 @@ console.log("treatment > ", treatment)
     };
     setValueToSubmit(dataToSubmit);
 
-    if (valueToSubmit) {
+    if (valueToSubmit && typeof treatmentId === 'string') {
       TreatmentService.updateTreatment(treatmentId, dataToSubmit);
       router.push("/treatment/dashboard");
     }
   };
 
-  console.log("valueToSubmit", valueToSubmit);
   if (!treatment) return <p>Chargement...</p>;
 
   return (

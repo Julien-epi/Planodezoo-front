@@ -35,7 +35,7 @@ const ModifyServicebookPage = () => {
     const fetchSpace = async () => {
       if (servicebookId) {
         const servicebookData = await ServiceBookService.getServiceBookById(
-          servicebookId
+          servicebookId as string
         );
         setServicebook(servicebookData);
         setValue("spaceId", servicebookData.spaceId);
@@ -56,12 +56,11 @@ const ModifyServicebookPage = () => {
     setValueToSubmit(dataToSubmit);
 
     if (valueToSubmit) {
-      ServiceBookService.updateServiceBook(servicebookId, dataToSubmit);
+      ServiceBookService.updateServiceBook(servicebookId as string, dataToSubmit); // <- Ajouter l'assertion de type ici
       router.push("/servicebook/dashboard");
     }
   };
 
-  console.log("valueToSubmit", valueToSubmit);
   if (!servicebook) return <p>Chargement...</p>;
 
   return (

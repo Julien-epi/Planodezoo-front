@@ -7,6 +7,7 @@ type FormData = {
   _id: string;
   spaceId: string;
   rateFrequency: number;
+  lastMaintenance: Date;
 };
 
 const CreateServiceBookPage = () => {
@@ -22,16 +23,17 @@ const CreateServiceBookPage = () => {
   const onSubmit = (data: FormData) => {
     const dataToSubmit = {
       ...data,
+      lastMaintenance: new Date(data.lastMaintenance),
     };
     setValueToSubmit(dataToSubmit);
-
+  
     if (valueToSubmit) {
       ServiceBookService.createServiceBook(dataToSubmit);
       router.push("/servicebook/dashboard");
     }
   };
+  
 
-  console.log("valueToSubmit", valueToSubmit);
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
@@ -57,6 +59,17 @@ const CreateServiceBookPage = () => {
               className="mt-2 p-2 border rounded-md"
             />
             {errors.rateFrequency && (
+              <p className="mt-1 text-red-500">Ce champ est requis</p>
+            )}
+          </label>
+          <label className="flex flex-col">
+            Last Maintenance:
+            <input
+              {...register("lastMaintenance", { required: true })}
+              className="mt-2 p-2 border rounded-md"
+              type="date" // utilisez un input de type "date" pour un meilleur contrôle de la date
+            />
+            {errors.lastMaintenance && (
               <p className="mt-1 text-red-500">Ce champ est requis</p>
             )}
           </label>          

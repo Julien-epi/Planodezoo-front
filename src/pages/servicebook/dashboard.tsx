@@ -26,9 +26,8 @@ function Spaces() {
       try {
         const servicebookData = await ServiceBookService.getAllServiceBooks();
         setServicebook(servicebookData);
-        console.log("🚀 ~ file: spaces.tsx:16 ~ Spaces ~ spaces:", servicebook)
       } catch (err) {
-        console.log("🚀 ~ file: spaces.tsx:26 ~ fetchSpaces ~ err:", err)
+        console.log("🚀 ~ file: spaces.tsx:26 ~ fetchSpaces ~ err:", err);
       }
     };
     fetchSpaces();
@@ -86,14 +85,13 @@ function Spaces() {
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                       {item.spaceId}
                     </td>
-                    <td
-                      className={`whitespace-nowrap px-3 py-4 text-sm`}
-                    >
+                    <td className={`whitespace-nowrap px-3 py-4 text-sm`}>
                       {item.rateFrequency}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {item.lastMaintenance}
-                    </td>{" "}
+                      {item.lastMaintenance.toLocaleDateString()}
+                    </td>
+
                     <td
                       onClick={() => handleEdit(item._id)}
                       className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"

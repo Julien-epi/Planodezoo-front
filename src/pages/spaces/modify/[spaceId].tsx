@@ -44,10 +44,8 @@ const ModifySpacePage = () => {
   const [valueToSubmit, setValueToSubmit] = useState<FormData | null>(null);
 
   useEffect(() => {
-    // Récupère les données de l'espace que vous voulez modifier
-    // Remplacez cela par votre propre logique pour obtenir les données de l'espace
     const fetchSpace = async () => {
-      if (spaceId) {
+      if (typeof spaceId === 'string') {
         const spaceData = await SpaceService.getSpaceById(spaceId);
         setSpace(spaceData);
         setValue("name", spaceData.name);
@@ -60,11 +58,12 @@ const ModifySpacePage = () => {
         setValue("handicappedAccess", spaceData.handicappedAccess);
       }
     };
-
-    if (spaceId) {
+  
+    if (typeof spaceId === 'string') {
       fetchSpace();
     }
   }, [spaceId, setValue]);
+  
 
   const onSubmit = (data: FormData) => {
     const dataToSubmit = {
@@ -73,14 +72,13 @@ const ModifySpacePage = () => {
       status: data.status === "true",
     };
     setValueToSubmit(dataToSubmit);
-
-    if (valueToSubmit) {
+  
+    if (valueToSubmit && typeof spaceId === 'string') {
       SpaceService.updateSpace(spaceId, dataToSubmit);
       router.push("/spaces/dashboard");
     }
   };
 
-  console.log("valueToSubmit", valueToSubmit);
   if (!space) return <p>Chargement...</p>;
 
   return (

@@ -30,8 +30,6 @@ function Spaces() {
     fetchTreatment();
   }, []);
 
-  console.log(treatment);
-
   const handleEdit = (id: string) => {
     router.push(`/treatment/modify/${id}`);
   };
@@ -88,8 +86,8 @@ function Spaces() {
                       {item.veterinarianId}
                     </td>{" "}
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {item.date}
-                    </td>{" "}
+                      {item.date.toLocaleDateString()}
+                    </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {item.treatmentDescription}
                     </td>{" "}

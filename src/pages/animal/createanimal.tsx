@@ -10,6 +10,7 @@ type FormData = {
   healthStatus: string;
   age: number;
   spaceId: string;
+  treatments: string;
 };
 
 const CreateAnimalPage = () => {
@@ -25,6 +26,7 @@ const CreateAnimalPage = () => {
   const onSubmit = (data: FormData) => {
     const dataToSubmit = {
       ...data,
+      treatments: ''
     };
     setValueToSubmit(dataToSubmit);
 
@@ -44,7 +46,7 @@ const CreateAnimalPage = () => {
           className="flex flex-col space-y-4"
         >
           <label className="flex flex-col">
-          name :
+            Name:
             <input
               {...register("name", { required: true })}
               className="mt-2 p-2 border rounded-md"
@@ -54,7 +56,7 @@ const CreateAnimalPage = () => {
             )}
           </label>
           <label className="flex flex-col">
-          species :
+            Species:
             <input
               {...register("species", { required: true })}
               className="mt-2 p-2 border rounded-md"
@@ -62,9 +64,9 @@ const CreateAnimalPage = () => {
             {errors.species && (
               <p className="mt-1 text-red-500">Ce champ est requis</p>
             )}
-          </label>     
+          </label>
           <label className="flex flex-col">
-          healthStatus :
+            Health Status:
             <input
               {...register("healthStatus", { required: true })}
               className="mt-2 p-2 border rounded-md"
@@ -72,9 +74,9 @@ const CreateAnimalPage = () => {
             {errors.healthStatus && (
               <p className="mt-1 text-red-500">Ce champ est requis</p>
             )}
-          </label>  
+          </label>
           <label className="flex flex-col">
-          age :
+            Age:
             <input
               {...register("age", { required: true })}
               className="mt-2 p-2 border rounded-md"
@@ -82,9 +84,9 @@ const CreateAnimalPage = () => {
             {errors.age && (
               <p className="mt-1 text-red-500">Ce champ est requis</p>
             )}
-          </label>  
+          </label>
           <label className="flex flex-col">
-          spaceId :
+            Space ID:
             <input
               {...register("spaceId", { required: true })}
               className="mt-2 p-2 border rounded-md"
@@ -92,7 +94,7 @@ const CreateAnimalPage = () => {
             {errors.spaceId && (
               <p className="mt-1 text-red-500">Ce champ est requis</p>
             )}
-          </label>       
+          </label>
           <input
             type="submit"
             className="cursor-pointer mt-4 p-2 bg-blue-500 text-white rounded-md"

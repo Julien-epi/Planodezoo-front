@@ -19,9 +19,8 @@ export default function Home() {
       try {
         const response = await ZooService.canZooOpen();
         setCanOpen(response.data.canOpen);
-        console.log("🚀 ~ file: index.tsx:19 ~ checkZooStatus ~ response.data:", response.data)
       } catch (err) {
-        console.log("Error checking if zoo can open:", err);
+      console.log("🚀 ~ file: index.tsx:23 ~ checkZooStatus ~ err:", err)
       }
     };
 
@@ -75,7 +74,6 @@ export default function Home() {
   }, [userName]);
 
   const handleTicket = async (spaceId: string) => {
-    console.log("Checking for ID:", spaceId);
 
     if (Array.isArray(userTickets) && userTickets.includes(spaceId)) {
       setModalMessage("Vous pouvez rentrer dans cet espace");

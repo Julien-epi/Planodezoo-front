@@ -35,13 +35,11 @@ const ModifyAnimalPage = () => {
   const [valueToSubmit, setValueToSubmit] = useState<FormData | null>(null);
 
   useEffect(() => {
-    // Récupère les données de l'espace que vous voulez modifier
-    // Remplacez cela par votre propre logique pour obtenir les données de l'espace
-    const fetchSpace = async () => {
-      if (animalId) {
-        const animalData = await AnimalService.getAnimalById(
-          animalId
-        );
+    // Récupère les données de l'animal que vous voulez modifier
+    // Remplacez cela par votre propre logique pour obtenir les données de l'animal
+    const fetchAnimal = async () => {
+      if (typeof animalId === 'string') { // vérification du type
+        const animalData = await AnimalService.getAnimalById(animalId);
         setAnimal(animalData);
         setValue("name", animalData.name);
         setValue("species", animalData.species);
@@ -50,9 +48,9 @@ const ModifyAnimalPage = () => {
         setValue("spaceId", animalData.spaceId);
       }
     };
-
-    if (animalId) {
-      fetchSpace();
+  
+    if (typeof animalId === 'string') { // vérification du type
+      fetchAnimal();
     }
   }, [animalId, setValue]);
 
@@ -61,14 +59,13 @@ const ModifyAnimalPage = () => {
       ...data,
     };
     setValueToSubmit(dataToSubmit);
-
-    if (valueToSubmit) {
+  
+    if (valueToSubmit && typeof animalId === 'string') { // vérification du type
       AnimalService.updateAnimal(animalId, dataToSubmit);
       router.push("/animal/dashboard");
     }
   };
 
-  console.log("valueToSubmit", valueToSubmit);
   if (!animal) return <p>Chargement...</p>;
 
   return (

@@ -11,19 +11,16 @@ function StatisticsPage() {
     StatisticsService.getTicketCountBySpace()
       .then(response => {
         setTotalStats(response.data);
-        console.log("🚀 ~ file: index.tsx:14 ~ useEffect ~ response.data:", response.data)
       });
 
     StatisticsService.getDailyTicketCountBySpace()
       .then(response => {
         setDailyStats(response.data);
-        console.log("🚀 ~ file: index.tsx:19 ~ useEffect ~ response.data:", response.data)
       });
 
     StatisticsService.getWeeklyTicketCountBySpace()
       .then(response => {
         setWeeklyStats(response.data);
-        console.log("🚀 ~ file: index.tsx:25 ~ useEffect ~ response.data:", response.data)
       });
   }, []);
 

@@ -46,8 +46,6 @@ export default function SpaceDetails() {
     fetchSpace();
   }, [spaceId]);
 
-  console.log(space);
-
   return (
     <div className="px-6 sm:px-6 lg:px-8 ">
       <div className="py-4 px-4 border-slate-200 border-2 rounded-3xl shadow-lg">
@@ -68,7 +66,7 @@ export default function SpaceDetails() {
           />
         </div>
         <div>
-          <table className="border border-2 mt-3 mx-auto text-center">
+          <table className="border-2 mt-3 mx-auto text-center">
             <thead>
               <tr>
                 {headers.map(({ text, key }) => (
@@ -100,7 +98,8 @@ export default function SpaceDetails() {
                   {space?.status ? "Available" : "Not Available"}
                 </td>
                 <td className="border px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                  {space?.lastMaintenance}
+                  {space?.lastMaintenance?.toLocaleString()}{" "}
+                  {/* Convertir la date en une chaîne avant de la rendre */}
                 </td>
               </tr>
             </tbody>

@@ -25,7 +25,6 @@ function Animals() {
       try {
         const animalData = await AnimalService.getAllAnimal();
         setAnimal(animalData);
-        console.log("🚀 ~ file: spaces.tsx:16 ~ Spaces ~ spaces:", animal);
       } catch (err) {
         console.log("🚀 ~ file: spaces.tsx:26 ~ fetchSpaces ~ err:", err);
       }
@@ -41,7 +40,6 @@ function Animals() {
     router.push(`/animal/createanimal`);
   };
 
-  console.log("animal", animal);
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">

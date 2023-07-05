@@ -30,15 +30,12 @@ function Spaces() {
       try {
         const spacesData = await SpaceService.getAllSpaces();
         setSpaces(spacesData);
-        console.log("🚀 ~ file: spaces.tsx:16 ~ Spaces ~ spaces:", spaces)
       } catch (err) {
         console.log("🚀 ~ file: spaces.tsx:26 ~ fetchSpaces ~ err:", err)
       }
     };
     fetchSpaces();
   }, []);
-
-  console.log(spaces);
 
   const handleDetails = (id: string) => {
     router.push(`/spaces/details/${id}`);
