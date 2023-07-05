@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import authServices from "@/services/authService";
 import toast from "react-hot-toast";
-import { RegisterForm, Role } from "@/interfaces/user";
+import { RegisterForm } from "@/interfaces/user";
 import { useRouter } from "next/router";
 import Select from "react-select"; 
 
@@ -35,7 +35,7 @@ export default function Register() {
     handleSubmit,
     formState: { errors },
     watch,
-    setValue, // Add setValue to your destructuring here
+    setValue, 
   } = useForm<RegisterForm>({
     defaultValues: {
       username: "",

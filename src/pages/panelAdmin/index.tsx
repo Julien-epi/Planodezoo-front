@@ -3,7 +3,7 @@ import { User } from "@/interfaces/user";
 import userService from "@/services/userService";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { FaTrash, FaEdit } from "react-icons/fa"; // font awesome icons
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 export default function PanelAdmin() {
   const [users, setUsers] = useState<User[]>([]);

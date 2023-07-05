@@ -54,9 +54,7 @@ export default function UpdateUser() {
           setValue("username", user.username);
           setValue("role", user.role);
 
-          // Verify that assignedDays exists
           if (user.assignedDays) {
-            // Convert assignedDays from string[] to Array<{ value: string; label: string; }>
             const assignedDays = user.assignedDays.map((day) => ({
               value: day,
               label: day,

@@ -121,7 +121,7 @@ export default function Ticket() {
           <label className="flex items-center space-x-3" key={space._id}>
             <input
               type="checkbox"
-              value={space._id} // Changed from space.name to space._id
+              value={space._id} 
               {...register("allowedSpaces")}
               className="rounded border-gray-300 text-indigo-600 focus:border-indigo-500 focus:ring-indigo-200"
             />

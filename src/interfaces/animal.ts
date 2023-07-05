@@ -4,6 +4,6 @@ export interface IAnimal {
   species: string;
   age: number;
   healthStatus: string;
-  treatments: string;
+  treatments?: string;
   spaceId: string;
 }
