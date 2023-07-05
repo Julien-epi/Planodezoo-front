@@ -10,7 +10,7 @@ type FormData = {
   healthStatus: string;
   age: number;
   spaceId: string;
-  treatments: string;
+  treatments?: string;
 };
 
 const CreateAnimalPage = () => {
@@ -21,22 +21,16 @@ const CreateAnimalPage = () => {
   } = useForm<FormData>();
 
   const router = useRouter();
-  const [valueToSubmit, setValueToSubmit] = useState<FormData | null>(null);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     const dataToSubmit = {
       ...data,
       treatments: ''
     };
-    setValueToSubmit(dataToSubmit);
-
-    if (valueToSubmit) {
-      AnimalService.createAnimal(dataToSubmit);
-      router.push("/animal/dashboard");
-    }
+  
+    await AnimalService.createAnimal(dataToSubmit);
+    router.push("/animal/dashboard");
   };
-
-  console.log("valueToSubmit", valueToSubmit);
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
