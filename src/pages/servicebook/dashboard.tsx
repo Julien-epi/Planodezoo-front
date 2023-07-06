@@ -89,7 +89,7 @@ function Spaces() {
                       {item.rateFrequency}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {item.lastMaintenance.toString()}
+                      {item.lastMaintenance.toLocaleDateString()}
                     </td>
 
                     <td
