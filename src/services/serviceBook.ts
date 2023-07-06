@@ -10,11 +10,21 @@ class ServiceBookService {
       const response = await axios.get(`${API_URL}servicebook/getallservicebooks`, {
         headers: authHeader(),
       });
-      return response.data as IServiceBook[];
+  
+      const serviceBooks = response.data as IServiceBook[];
+  
+      // convertir lastMaintenance en Date
+      serviceBooks.forEach(book => {
+        book.lastMaintenance = new Date(book.lastMaintenance);
+      });
+  
+      return serviceBooks;
+  
     } catch (error) {
       throw new Error(`An error has occurred: ${error}`);
     }
   }
+  
 
   // Récupérer un servicebooks par ID
   static async getServiceBookById(id: string | string[]): Promise<IServiceBook> {
